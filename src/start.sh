@@ -1,12 +1,17 @@
 #!/usr/bin/env bash
 
-# Проверка наличия файла модели
-if [ -f /runpod-volume/ImageModel.safetensors ]; then
-  echo "[LOG] Model file found: /runpod-volume/ImageModel.safetensors"
-  ls -lh /runpod-volume/ImageModel.safetensors
+# Выводим содержимое корня
+echo "[LOG] Root directory listing:"
+ls -lh /
+
+# Проверка наличия файла модели и вывод содержимого /runpod-volume
+if [ -d /runpod-volume ]; then
+  echo "[LOG] /runpod-volume exists. Listing contents:"
+  ls -lh /runpod-volume
+  echo "[LOG] Recursive listing of /runpod-volume:"
+  ls -lR /runpod-volume
 else
-  echo "[ERROR] Model file NOT found: /runpod-volume/ImageModel.safetensors"
-  ls -lh /runpod-volume || true
+  echo "[ERROR] /runpod-volume directory NOT found"
 fi
 
 echo "Worker Initiated"
