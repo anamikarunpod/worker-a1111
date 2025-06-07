@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 
+# Проверка наличия файла модели
+if [ -f /runpod-volume/ImageModel.safetensors ]; then
+  echo "[LOG] Model file found: /runpod-volume/ImageModel.safetensors"
+  ls -lh /runpod-volume/ImageModel.safetensors
+else
+  echo "[ERROR] Model file NOT found: /runpod-volume/ImageModel.safetensors"
+  ls -lh /runpod-volume || true
+fi
+
 echo "Worker Initiated"
 
 echo "Starting WebUI API"
