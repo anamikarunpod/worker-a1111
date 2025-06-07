@@ -1,15 +1,5 @@
 # ---------------------------------------------------------------------------- #
-#                         Stage 1: Download the models                         #
-# ---------------------------------------------------------------------------- #
-FROM alpine/git:2.43.0 as download
-
-# NOTE: CivitAI usually requires an API token, so you need to add it in the header
-#       of the wget command if you're using a model from CivitAI.
-RUN apk add --no-cache wget && \
-    wget -q -O /model.safetensors https://huggingface.co/XpucT/Deliberate/resolve/main/Deliberate_v6.safetensors
-
-# ---------------------------------------------------------------------------- #
-#                        Stage 2: Build the final image                        #
+#                        Stage 1: Build the final image                        #
 # ---------------------------------------------------------------------------- #
 FROM python:3.10.14-slim as build_final_image
 
@@ -34,8 +24,6 @@ RUN --mount=type=cache,target=/root/.cache/pip \
     pip install xformers && \
     pip install -r requirements_versions.txt && \
     python -c "from launch import prepare_environment; prepare_environment()" --skip-torch-cuda-test
-
-COPY --from=download /model.safetensors /model.safetensors
 
 # install dependencies
 COPY requirements.txt .
