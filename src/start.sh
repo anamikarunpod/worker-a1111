@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Выводим содержимое корня
+# Выводим содержимое корня!
 echo "[LOG] Root directory listing:"
 ls -lh /
 
