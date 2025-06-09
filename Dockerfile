@@ -35,4 +35,4 @@ COPY test_input.json .
 ADD src .
 
 RUN chmod +x /start.sh
-CMD /start.sh
+ENTRYPOINT ["/start.sh"]
