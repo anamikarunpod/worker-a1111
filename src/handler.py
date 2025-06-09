@@ -91,7 +91,7 @@ def wait_for_volume(mount_path="/runpod-volume", max_attempts=20, sleep_secs=2):
     logging.info(f"Waiting for {mount_path} to mount...")
 
     for i in range(1, max_attempts + 1):
-        if os.path.isdir(mount_path) and os.listdir(mount_path):
+        if os.path.isdir(mount_path):
             logging.info(f"{mount_path} mounted and contains files.")
             break
         logging.info(f"Attempt {i}: {mount_path} not ready. Retrying in {sleep_secs}s...")
