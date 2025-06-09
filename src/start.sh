@@ -4,21 +4,6 @@
 echo "[LOG] Root directory listing:"
 ls -lh /
 
-# Проверка наличия файла модели и вывод содержимого /runpod-volume
-for i in {1..10}; do
-    if [ -d "/runpod-volume" ]; then
-        echo "[LOG] /runpod-volume found!"
-        break
-    fi
-    echo "[LOG] Not found, retrying in 2s... ($i/10)"
-    sleep 2
-done
-
-if [ ! -d "/runpod-volume" ]; then
-    echo "[ERROR] /runpod-volume not mounted after 10 attempts. Exiting."
-    exit 1
-fi
-
 # Поиск файла ImageModel.safetensors по всей файловой системе
 echo "[LOG] Searching for ImageModel.safetensors in filesystem:"
 find / -name 'ImageModel.safetensors' 2>/dev/null || echo "[LOG] File not found anywhere in filesystem."
