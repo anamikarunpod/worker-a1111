@@ -17,3 +17,4 @@ export PYTHONUNBUFFERED=true
 
 echo "Starting RunPod Handler"
 python -u /handler.py
+
